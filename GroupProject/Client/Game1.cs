@@ -1,4 +1,5 @@
-﻿using ClassLibrary.Ships;
+﻿using ClassLibrary.MS_weapons;
+using ClassLibrary.Ships;
 using ClassLibrary.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +19,12 @@ namespace Client
         BaseShip testShip;
         Texture2D _textureShip;
         Texture2D _textureWeapon;
+
+        MS_ship ms_ship;
+        Texture2D _ms_textureS;
+        Texture2D _ms_textureW;
+        MS_weapon ms_weapon;
+
 
         Weapon testWeapon;
         Weapon newWeapon;
@@ -56,11 +63,19 @@ namespace Client
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _textureShip = Content.Load<Texture2D>(@"Assets\Textures\Ships\Placeholder_Spaceship");
-            _textureWeapon = Content.Load<Texture2D>(@"Assets\Textures\Weapons\Placeholder_Weapon");
+            _textureShip = Content.Load<Texture2D>(@"Assets\Textures\Ships\msShip");
+            _textureWeapon = Content.Load<Texture2D>(@"Assets\Textures\Weapons\missle");
+
+            _ms_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\msShip");
+            _ms_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\missle");
+
 
             testWeapon = new Weapon("0", _textureWeapon, 20f, Vector2.Zero, Vector2.Zero, 0f, 20);
             testShip = new BaseShip("0", _textureShip, 5.0f);
+
+            //ms_weapon = new MS_weapon("0", _textureWeapon, 20f, Vector2.Zero, Vector2.Zero, 0f, 20);
+            ms_ship = new MS_ship("0", _textureShip, 7.0f);
+            //ms_ship.weapon = ms_weapon;
             testShip.weapon = testWeapon;
             // TODO: use this.Content to load your game content here
         }
@@ -101,7 +116,7 @@ namespace Client
                 }
             }
 
-            //testShip.ShipUpdate(newState, oldState);
+            ms_ship.ShipUpdate(newState, oldState);
 
             // TODO: Add your update logic here
 
@@ -118,7 +133,8 @@ namespace Client
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            testShip.Draw(spriteBatch);
+            //testShip.Draw(spriteBatch);
+            ms_ship.Draw(spriteBatch);
 
             if (Weapons.Count > 0)
             {

@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="Base\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ships\MS_ship.cs" />
     <Compile Include="Ships\BaseShip.cs" />
+    <Compile Include="Weapons\MS_weapon.cs" />
     <Compile Include="Weapons\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>

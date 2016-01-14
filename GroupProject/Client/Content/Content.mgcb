@@ -35,3 +35,25 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/Weapons/Placeholder_Weapon.png
 
+#begin Assets/Textures/Ships/msShip.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/Ships/msShip.png
+
+#begin Assets/Textures/Weapons/missle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/Weapons/missle.png
+
