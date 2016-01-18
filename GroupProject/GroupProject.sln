@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat\Chat.csproj", "{F056C9C9-52E3-40C3-80F8-D8BBE04C7E6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siganl R Chat Client", "Siganl R Chat Client\Siganl R Chat Client.csproj", "{C286B7B6-9AC7-4413-92F5-7EE9A485996A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{F056C9C9-52E3-40C3-80F8-D8BBE04C7E6F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F056C9C9-52E3-40C3-80F8-D8BBE04C7E6F}.Release|x86.ActiveCfg = Release|Any CPU
 		{F056C9C9-52E3-40C3-80F8-D8BBE04C7E6F}.Release|x86.Build.0 = Release|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Debug|x86.Build.0 = Debug|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Release|x86.ActiveCfg = Release|Any CPU
+		{C286B7B6-9AC7-4413-92F5-7EE9A485996A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
