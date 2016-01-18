@@ -19,11 +19,14 @@ namespace Siganl_R_Chat_Client
             HubConnection connection = new HubConnection("http://localhost:52037");
             proxy = connection.CreateHubProxy("ChatHub");
 
+            connection.Received += Connection_Received;
+
         }
 
             private static void Connection_Received(string obj)
         {
             Console.WriteLine("Message Recieved {0}", obj);
+
         }
 
         private static void recieved_a_message(string sender, string message)
