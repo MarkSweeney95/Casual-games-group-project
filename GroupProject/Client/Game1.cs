@@ -147,6 +147,7 @@ namespace Client
 
             //testShip.Draw(spriteBatch);
             ms_ship.Draw(spriteBatch);
+            TC_ship.Draw(spriteBatch);
 
             if (Weapons.Count > 0)
             {
