@@ -22,7 +22,7 @@ namespace ClassLibrary.Ships
         public Weapon weapon;
         private Weapon firedWeapon;
 
-        public BaseShip(string id, Texture2D _tex, float speed) : base(_tex, Vector2.Zero)
+        public AH_Ship(string id, Texture2D _tex, float speed) : base(_tex, Vector2.Zero)
         {
             ID = id;
             Health = 100.0f;
