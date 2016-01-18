@@ -25,6 +25,11 @@ namespace Client
         Texture2D _ms_textureW;
         MS_weapon ms_weapon;
 
+        TC_ship TC_ship;
+        Texture2D _tc_textureS;
+        Texture2D _tc_textureW;
+        MS_weapon tc_weapon;
+
 
         Weapon testWeapon;
         Weapon newWeapon;
@@ -69,6 +74,9 @@ namespace Client
             _ms_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\msShip");
             _ms_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\missle");
 
+            _tc_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\tcShip");
+            _tc_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\laser");
+
 
             testWeapon = new Weapon("0", _textureWeapon, 20f, Vector2.Zero, Vector2.Zero, 0f, 20);
             testShip = new BaseShip("0", _textureShip, 5.0f);
@@ -77,6 +85,10 @@ namespace Client
             ms_ship = new MS_ship("0", _textureShip, 7.0f);
             //ms_ship.weapon = ms_weapon;
             testShip.weapon = testWeapon;
+
+
+            TC_ship = new TC_ship("2", _tc_textureS, 6.0f);
+
             // TODO: use this.Content to load your game content here
         }
 
