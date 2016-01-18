@@ -79,7 +79,11 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/Weapons/laser.png
 
+<<<<<<< HEAD
 #begin Assets/Textures/Weapons/bomb.png
+=======
+#begin Assets/Textures/Ships/ahShip.png
+>>>>>>> origin/master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -88,6 +92,7 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
+<<<<<<< HEAD
 /build:Assets/Textures/Weapons/bomb.png
 
 #begin Assets/Textures/Ships/AH_ship.png
@@ -100,4 +105,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/Ships/AH_ship.png
+=======
+/build:Assets/Textures/Ships/ahShip.png
+>>>>>>> origin/master
 
