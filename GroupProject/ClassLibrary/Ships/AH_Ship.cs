@@ -5,6 +5,7 @@ using System.Text;
 using ClassLibrary.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace ClassLibrary.Ships
 {
@@ -21,8 +22,8 @@ namespace ClassLibrary.Ships
         private float currentSpeed;
         private float angle;
 
-        public Weapon weapon;
-        private Weapon firedWeapon;
+        public AH_weapon weapon;
+        private AH_weapon firedWeapon;
 
         public AH_Ship(string id, Texture2D _tex, float speed) : base(_tex, Vector2.Zero)
         {

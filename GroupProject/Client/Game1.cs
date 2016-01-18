@@ -19,17 +19,17 @@ namespace Client
         BaseShip testShip;
         Texture2D _textureShip;
         Texture2D _textureWeapon;
-
+        //
         MS_ship ms_ship;
         Texture2D _ms_textureS;
         Texture2D _ms_textureW;
         MS_weapon ms_weapon;
-
+        //
         TC_ship TC_ship;
         Texture2D _tc_textureS;
         Texture2D _tc_textureW;
         MS_weapon tc_weapon;
-
+        //
         AH_Ship AH_ship;
         Texture2D _ah_textureS;
         Texture2D _ah_textureW;
@@ -82,8 +82,8 @@ namespace Client
             _tc_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\tcShip");
             _tc_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\laser");
 
-            _ah_textureS = Content.Load<Texture2D>(@"Assests/Textures/Ships/ahShip");
-            _ah_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\torpedo");
+            _ah_textureS = Content.Load<Texture2D>(@"Assests\Textures\Ships\AH_Ship");
+            _ah_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\bomb");
 
 
             testWeapon = new Weapon("0", _textureWeapon, 20f, Vector2.Zero, Vector2.Zero, 0f, 20);
