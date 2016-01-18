@@ -4,7 +4,9 @@ using ClassLibrary.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using WebAPIAuthenticationClient;
 
 namespace Client
 {
@@ -15,6 +17,9 @@ namespace Client
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteFont font;
+        string Message;
+
 
         BaseShip testShip;
         Texture2D _textureShip;
@@ -61,6 +66,18 @@ namespace Client
             graphics.PreferredBackBufferHeight = 768;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.ApplyChanges();
+            try
+            {
+                bool valid = PlayerAuthentication.login("S00143451@mail.itsligo.ie", "MS").Result;
+
+                if (valid) Message = "Player Logged in " + PlayerAuthentication.PlayerToken;
+                else Message = PlayerAuthentication.PlayerToken;
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+
             base.Initialize();
         }
 
@@ -86,6 +103,8 @@ namespace Client
             _ah_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\bomb");
 
 
+            font = Content.Load<SpriteFont>(@"Assets\Textures\Font\MessgaeFont");
+
             testWeapon = new Weapon("0", _textureWeapon, 20f, Vector2.Zero, Vector2.Zero, 0f, 20);
             testShip = new BaseShip("0", _textureShip, 5.0f);
 
@@ -95,9 +114,9 @@ namespace Client
             testShip.weapon = testWeapon;
 
 
-            TC_ship = new TC_ship("2", _tc_textureS, 6.0f);
+            TC_ship = new TC_ship("1", _tc_textureS, 6.0f);
 
-            AH_ship = new AH_Ship("3", _ah_textureS, 5.0f);
+            AH_ship = new AH_Ship("2", _ah_textureS, 5.0f);
 
             // TODO: use this.Content to load your game content here
         }
@@ -159,6 +178,10 @@ namespace Client
             ms_ship.Draw(spriteBatch);
             TC_ship.Draw(spriteBatch);
             AH_ship.Draw(spriteBatch);
+
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
+            spriteBatch.End();
 
             if (Weapons.Count > 0)
             {
