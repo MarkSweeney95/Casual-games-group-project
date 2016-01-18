@@ -16,9 +16,16 @@ namespace Siganl_R_Chat_Client
             name = Console.ReadLine();
 
             IHubProxy proxy;
-            HubConnection connection = new HubConnection("http://localhost:52037");
+            HubConnection connection = new HubConnection("http://localhost:7177");
             proxy = connection.CreateHubProxy("ChatHub");
 
+            Action<string, string> SendMessageRecieved = recieved_a_message;
+
+            proxy.On("broadcastMessage", SendMessageRecieved);
+
+
+
+   
             connection.Received += Connection_Received;
 
         }
@@ -34,7 +41,7 @@ namespace Siganl_R_Chat_Client
             Console.WriteLine("{0} : {1}", sender, message);
         }
 
-        Action<string, string> SendMessageRecieved = recieved_a_message;
+
 
 
 
