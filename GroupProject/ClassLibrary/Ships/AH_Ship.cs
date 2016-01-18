@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ClassLibrary.Weapons;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ClassLibrary.Ships
 {
-    class AH_Ship : ClassLibrary.Base.Sprite
+   public class AH_Ship : ClassLibrary.Base.Sprite
     {
         private string ID;
         private SpriteEffects flip;

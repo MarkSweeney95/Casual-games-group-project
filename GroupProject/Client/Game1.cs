@@ -30,6 +30,11 @@ namespace Client
         Texture2D _tc_textureW;
         MS_weapon tc_weapon;
 
+        AH_Ship AH_ship;
+        Texture2D _ah_textureS;
+        Texture2D _ah_textureW;
+        AH_weapon ah_weapon;
+
 
         Weapon testWeapon;
         Weapon newWeapon;
@@ -77,6 +82,9 @@ namespace Client
             _tc_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\tcShip");
             _tc_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\laser");
 
+            _ah_textureS = Content.Load<Texture2D>(@"Assests/Textures/Ships/ahShip");
+            _ah_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\torpedo");
+
 
             testWeapon = new Weapon("0", _textureWeapon, 20f, Vector2.Zero, Vector2.Zero, 0f, 20);
             testShip = new BaseShip("0", _textureShip, 5.0f);
@@ -88,6 +96,8 @@ namespace Client
 
 
             TC_ship = new TC_ship("2", _tc_textureS, 6.0f);
+
+            AH_ship = new AH_Ship("3", _ah_textureS, 5.0f);
 
             // TODO: use this.Content to load your game content here
         }
@@ -148,6 +158,7 @@ namespace Client
             //testShip.Draw(spriteBatch);
             ms_ship.Draw(spriteBatch);
             TC_ship.Draw(spriteBatch);
+            AH_ship.Draw(spriteBatch);
 
             if (Weapons.Count > 0)
             {

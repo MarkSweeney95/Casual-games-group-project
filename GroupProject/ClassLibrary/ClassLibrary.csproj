@@ -51,6 +51,7 @@
     <Compile Include="Ships\MS_ship.cs" />
     <Compile Include="Ships\BaseShip.cs" />
     <Compile Include="Ships\TC_ship.cs" />
+    <Compile Include="Weapons\AH_weapon.cs" />
     <Compile Include="Weapons\MS_weapon.cs" />
     <Compile Include="Weapons\TC_weapon.cs" />
     <Compile Include="Weapons\Weapon.cs" />
