@@ -180,7 +180,14 @@ namespace Client
 
             ms_ship.ShipUpdate(newState, oldState);
 
-
+            foreach (var item in Weapons)
+            {
+                item.WeaponUpdate(); //update the Bullets
+                if (OutsideScreen(item))
+                {
+                    DestroyWeapons.Add(item);
+                }
+            }
 
             #region Collision
 
@@ -279,12 +286,22 @@ namespace Client
         }
 
 
-        #region Handle Server information
+        #region Handle Server information and other methodes
+
         private void reciveNewPlayerPosition(string id, Vector2 obj)
         {
             Enemies[Enemies.FindIndex(e => e.UserName == id)]._position = obj;
         }
 
+        public bool OutsideScreen(Sprite obj)
+        {
+            if (!obj.Rectangle.Intersects(Window.ClientBounds))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
 
         #endregion
     }
