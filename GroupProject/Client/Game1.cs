@@ -49,6 +49,15 @@ namespace Client
 
         string[] menuOptions = new string[] { "Fast", "Normal", "Strong" };
 
+
+        enum currentDisplay { Selection, Game, Score };
+
+        currentDisplay currentState = currentDisplay.Selection;
+
+        bool gameStarted = false;
+
+
+
         string clientID;
 
         Player testPlayer;
@@ -76,10 +85,10 @@ namespace Client
             Content.RootDirectory = "Content";
         }
 
-    
+
         protected override void Initialize()
         {
-            
+
             graphics.PreferredBackBufferHeight = 768;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.ApplyChanges();
@@ -108,7 +117,7 @@ namespace Client
             base.Initialize();
         }
 
-       
+
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -189,74 +198,92 @@ namespace Client
                 }
             }
 
-            #region Collision
 
-            foreach (var item in Weapons)
+
+
+            #region GameLogic 
+
+            if (currentState == currentDisplay.Game) //if the game is running
             {
-                if (item.IsVisible)
+                if (gameStarted)
                 {
-                    foreach (var ene in Enemies)
+
+                    proxy.Invoke("UpdatePosition", player._position);
+
+
+
+                    #region Collision
+
+                    foreach (var item in Weapons)
                     {
-                        if (item.CollisiionDetection(ene.Ship.Rectangle)) //check if bullet hits any enemy
+                        if (item.IsVisible)
                         {
-                            if (item.createdPlayerID != ene.Ship.Id)    //if the ID if the enemy is the same as the bullet
+                            foreach (var ene in Enemies)
                             {
-                                ene.Ship.GotShoot(item);                //ship got hit
-                                item.IsVisible = false;                 //disable bullet
-                                DestroyWeapons.Add(item);               //destroy bullet at the end (to clear the ram
-                                if (!ene.Ship.IsVisible)                //check if ship get destroied 
+                                if (item.CollisiionDetection(ene.Ship.Rectangle)) //check if bullet hits any enemy
                                 {
-                                    ene.isActive = false;               //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
-                                    if (item.createdPlayerID == testPlayer.UserName)
-                                        testPlayer.Score += 50;
+                                    if (item.createdPlayerID != ene.Ship.Id)    //if the ID if the enemy is the same as the bullet
+                                    {
+                                        ene.Ship.GotShoot(item);                //ship got hit
+                                        item.IsVisible = false;                 //disable bullet
+                                        DestroyWeapons.Add(item);               //destroy bullet at the end (to clear the ram
+                                        if (!ene.Ship.IsVisible)                //check if ship get destroied 
+                                        {
+                                            ene.isActive = false;               //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
+                                            if (item.createdPlayerID == testPlayer.UserName)
+                                                testPlayer.Score += 50;
+                                        }
+
+
+
+
+
+                                        //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
+                                    }
                                 }
-
-
-
-
-
-                                //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
+                            }
+                            if (item.Rectangle.Intersects(testPlayer.Ship.Rectangle))    //check if playership got hit by the Weapon
+                            {
+                                testPlayer.Ship.GotShoot(item);                         //ship got hit
+                                item.IsVisible = false;                                 //disable the weapon
+                                DestroyWeapons.Add(item);
                             }
                         }
                     }
-                    if (item.Rectangle.Intersects(testPlayer.Ship.Rectangle))    //check if playership got hit by the Weapon
+
+                    foreach (var item in Projectiles)
                     {
-                        testPlayer.Ship.GotShoot(item);                         //ship got hit
-                        item.IsVisible = false;                                 //disable the weapon
-                        DestroyWeapons.Add(item);
+                        if (testPlayer.Ship.CollisiionDetection(item.Rectangle))    //check if any consumables hit player ship
+                        {
+                            GotCollected.Add(item);
+                            item.IsVisible = false;
+                            testPlayer.Ship.CollectPickup(item);
+                        }
+
+                        foreach (var ene in Enemies)
+                        {
+                            if (ene.Ship.CollisiionDetection(item.Rectangle))
+                            {
+                                ene.Ship.CollectPickup(item);
+                                item.IsVisible = false;
+                                GotCollected.Add(item);
+                            }
+                        }
                     }
+
+                    #endregion
+
+
+                    oldState = newState;
+
+                    base.Update(gameTime);
                 }
+
             }
 
-            foreach (var item in Projectiles)
-            {
-                if (testPlayer.Ship.CollisiionDetection(item.Rectangle))    //check if any consumables hit player ship
-                {
-                    GotCollected.Add(item);
-                    item.IsVisible = false;
-                    testPlayer.Ship.CollectPickup(item);
-                }
-
-                foreach (var ene in Enemies)
-                {
-                    if (ene.Ship.CollisiionDetection(item.Rectangle))
-                    {
-                        ene.Ship.CollectPickup(item);
-                        item.IsVisible = false;
-                        GotCollected.Add(item);
-                    }
-                }
-            }
-
-            #endregion
-            
-
-            oldState = newState;
-
-            base.Update(gameTime);
         }
 
-        
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -303,6 +330,8 @@ namespace Client
                 return false;
         }
 
-        #endregion
+        
     }
+
 }
+
