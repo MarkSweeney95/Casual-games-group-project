@@ -13,17 +13,19 @@ namespace ClassLibrary.Base
         public BaseShip Ship;
         public Weapon Weapon;
         public bool isActive;
+        public int Score;
 
-        public Player(string uName, BaseShip _ship, Weapon _weapon)
+        public Player(string uName, int _score, BaseShip _ship, Weapon _weapon)
         {
             UserName = uName;
             Ship = _ship;
             Weapon = _weapon;
             Ship.weapon = Weapon;
             isActive = true;
+            Score = 0;
         }
 
-        public int score;
+        
 
     }
 }
