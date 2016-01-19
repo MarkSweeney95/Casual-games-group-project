@@ -211,7 +211,7 @@ namespace Client
                                 {
                                     ene.isActive = false;               //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
                                     if (item.createdPlayerID == testPlayer.UserName)
-                                        testPlayer.score += 50;
+                                        testPlayer.Score += 50;
                                 }
 
 
@@ -267,14 +267,23 @@ namespace Client
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            //testShip.Draw(spriteBatch);
-            spriteBatch.Begin();
-            ms_ship.Draw(spriteBatch);
-            TC_ship.Draw(spriteBatch);
-            AH_ship.Draw(spriteBatch);
-            spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
+            if (currentState == currentDisplay.Selection)
+                menu.Draw(spriteBatch); //draw the menu
 
-            spriteBatch.End();
+
+            if (currentState == currentDisplay.Game)
+            {
+
+                //testShip.Draw(spriteBatch);
+                spriteBatch.Begin();
+                ms_ship.Draw(spriteBatch);
+                TC_ship.Draw(spriteBatch);
+                AH_ship.Draw(spriteBatch);
+                spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
+
+                spriteBatch.End();
+
+            }
 
 
             if (Weapons.Count > 0)
