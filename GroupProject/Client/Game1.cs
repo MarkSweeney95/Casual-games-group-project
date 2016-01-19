@@ -273,6 +273,7 @@ namespace Client
             TC_ship.Draw(spriteBatch);
             AH_ship.Draw(spriteBatch);
             spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
+
             spriteBatch.End();
 
 
