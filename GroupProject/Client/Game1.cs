@@ -172,25 +172,28 @@ namespace Client
 
             foreach (var item in Weapons)
             {
-                foreach (var ene in Enemies)
+                if (item.IsVisible)
                 {
-                    if (item.CollisiionDetection(ene.Ship.Rectangle)) //check if bullet hits any enemy
+                    foreach (var ene in Enemies)
                     {
-                        if (item.createdPlayerID != ene.Ship.Id)    //if the ID if the enemy is the same as the bullet
+                        if (item.CollisiionDetection(ene.Ship.Rectangle)) //check if bullet hits any enemy
                         {
-                            ene.Ship.GotShoot(item);                //ship got hit
-                            item.IsVisible = false;                 //disable bullet
-                            DestroyWeapons.Add(item);               //destroy bullet at the end (to clear the ram
-                            if (!ene.Ship.IsVisible)                //check if ship get destroied 
-                                ene.isActive = false;               //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
+                            if (item.createdPlayerID != ene.Ship.Id)    //if the ID if the enemy is the same as the bullet
+                            {
+                                ene.Ship.GotShoot(item);                //ship got hit
+                                item.IsVisible = false;                 //disable bullet
+                                DestroyWeapons.Add(item);               //destroy bullet at the end (to clear the ram
+                                if (!ene.Ship.IsVisible)                //check if ship get destroied 
+                                    ene.isActive = false;               //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
+                            }
                         }
                     }
-                }
-                if (item.Rectangle.Intersects(testPlayer.Ship.Rectangle))    //check if playership got hit by the Weapon
-                {
-                    testPlayer.Ship.GotShoot(item);                         //ship got hit
-                    item.IsVisible = false;                                 //disable the weapon
-                    DestroyWeapons.Add(item);
+                    if (item.Rectangle.Intersects(testPlayer.Ship.Rectangle))    //check if playership got hit by the Weapon
+                    {
+                        testPlayer.Ship.GotShoot(item);                         //ship got hit
+                        item.IsVisible = false;                                 //disable the weapon
+                        DestroyWeapons.Add(item);
+                    }
                 }
             }
 
@@ -215,16 +218,7 @@ namespace Client
             }
 
             #endregion
-
-
-
-            #region Collision
-            //need to add the collision here
-
-
-            #endregion
-
-            // TODO: Add your update logic here
+            
 
             oldState = newState;
 
@@ -246,7 +240,7 @@ namespace Client
             AH_ship.Draw(spriteBatch);
             spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
             spriteBatch.End();
-            
+
 
             if (Weapons.Count > 0)
             {

@@ -13,12 +13,25 @@ namespace ClassLibrary.Weapons
         public string createdPlayerID;
         public float damage;
         public float angle;
+        private float projectileWeight;
 
         public float speed;
 
         SpriteEffects flip;
-        Vector2 moveVector;
+        protected Vector2 moveVector;
 
+        public float ProjectileWeight
+        {
+            get
+            {
+                return projectileWeight;
+            }
+
+            set
+            {
+                projectileWeight = value;
+            }
+        }
 
         public Weapon(Texture2D _tex, Vector2 _pos) : base(_tex, _pos)
         {        }
@@ -32,12 +45,12 @@ namespace ClassLibrary.Weapons
             speed = _speed;
         }
 
-        public void WeaponUpdate()
+        public virtual void WeaponUpdate()
         {
             _position += (moveVector * speed);
 
-            //if (_position.X >= 1280 || _position.Y >= 768)            Destroy object
-            //    this = null;
+            if (_position.X >= 1280 || _position.Y >= 768)           // Destroy object
+                IsVisible = false;
         }
 
         public override void Draw(SpriteBatch sp)
