@@ -3,6 +3,7 @@ using ClassLibrary.Consumables;
 using ClassLibrary.MS_weapons;
 using ClassLibrary.Ships;
 using ClassLibrary.Weapons;
+using Microsoft.AspNet.SignalR.Client;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -48,6 +49,7 @@ namespace Client
 
         string[] menuOptions = new string[] { "Fast", "Normal", "Strong" };
 
+        string clientID;
 
         Player testPlayer;
 
@@ -63,6 +65,9 @@ namespace Client
         KeyboardState newState;
         KeyboardState oldState;
 
+        static IHubProxy proxy;
+        HubConnection connection = new HubConnection("http://localhost:7177/");
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -76,6 +81,16 @@ namespace Client
             graphics.PreferredBackBufferHeight = 768;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.ApplyChanges();
+
+
+            proxy = connection.CreateHubProxy("GameHub");
+            clientID = connection.ConnectionId;
+
+            Action<string, Vector2> ReciveNewPosition = reciveNewPlayerPosition;
+
+
+
+            proxy.On("updatePosition", ReciveNewPosition);
 
             try
             {
@@ -260,5 +275,15 @@ namespace Client
 
             base.Draw(gameTime);
         }
+
+
+        #region Handle Server information
+        private void reciveNewPlayerPosition(string id, Vector2 obj)
+        {
+            Enemies[Enemies.FindIndex(e => e.UserName == id)]._position = obj;
+        }
+
+
+        #endregion
     }
 }
