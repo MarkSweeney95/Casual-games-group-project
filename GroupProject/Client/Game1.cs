@@ -106,10 +106,10 @@ namespace Client
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = Content.Load<SpriteFont>(@"SpriteFont\MessgaeFont");
+            font = Content.Load<SpriteFont>(@"Assets\Textures\SpriteFont\MessgaeFont");
 
-            _textureShip = Content.Load<Texture2D>(@"Assets\Textures\Ships\msShip");
-            _textureWeapon = Content.Load<Texture2D>(@"Assets\Textures\Weapons\missle");
+            //_textureShip = Content.Load<Texture2D>(@"Assets\Textures\Ships\msShip");
+            //_textureWeapon = Content.Load<Texture2D>(@"Assets\Textures\Weapons\missle");
 
             _ms_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\msShip");
             _ms_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\missle");
@@ -117,7 +117,7 @@ namespace Client
             _tc_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\tcShip");
             _tc_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\laser");
 
-            _ah_textureS = Content.Load<Texture2D>(@"Assests\Textures\Ships\AH_Ship");
+            _ah_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\AH_ship");
             _ah_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\bomb");
 
 

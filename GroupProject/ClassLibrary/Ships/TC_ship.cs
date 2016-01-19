@@ -36,7 +36,7 @@ namespace ClassLibrary.Ships
             currentFireDirection = newFireDirection;
         }
 
-        public virtual void GotShoot(Weapon w)
+        public virtual void GotShoot(TC_weapon w)
         {
             if (ID != w.createdPlayerID)                               //test if the weapon is from the player and decrease the Health
             {
@@ -45,7 +45,7 @@ namespace ClassLibrary.Ships
             }
         }
 
-        public virtual Weapon ShipUpdate(KeyboardState newState, KeyboardState oldState)
+        public virtual TC_weapon ShipUpdate(KeyboardState newState, KeyboardState oldState)
         {
 
 
@@ -102,9 +102,9 @@ namespace ClassLibrary.Ships
             base.Draw(sp, angle, flip);
         }
 
-        public virtual Weapon Shoot(string id, float _speed)
+        public virtual TC_weapon Shoot(string id, float _speed)
         {
-            return new Weapon(id, weapon._texture, weapon.damage, _position, currentFireDirection, angle, _speed);
+            return new TC_weapon(id, weapon._texture, weapon.damage, _position, currentFireDirection, angle, _speed);
         }
 
         private float GetAngle()
