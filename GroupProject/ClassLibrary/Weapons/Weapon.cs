@@ -20,6 +20,9 @@ namespace ClassLibrary.Weapons
         Vector2 moveVector;
 
 
+        public Weapon(Texture2D _tex, Vector2 _pos) : base(_tex, _pos)
+        {        }
+
         public Weapon(string id, Texture2D _tex, float _dam, Vector2 _pos, Vector2 _move, float _ang, float _speed) : base(_tex, _pos)
         {
             createdPlayerID = id;

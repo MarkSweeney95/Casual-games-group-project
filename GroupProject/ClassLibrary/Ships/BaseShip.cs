@@ -1,4 +1,5 @@
-﻿using ClassLibrary.Weapons;
+﻿using ClassLibrary.Consumables;
+using ClassLibrary.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,6 +14,7 @@ namespace ClassLibrary.Ships
     public class BaseShip : ClassLibrary.Base.Sprite
     {
         private string ID;
+        public string Id { get; set; }
         private SpriteEffects flip;
         private Vector2 moveVector;
         private Vector2 newFireDirection = new Vector2(0, 1);
@@ -22,6 +24,8 @@ namespace ClassLibrary.Ships
         private float initSpeed;
         private float currentSpeed;
         private float angle;
+        private float maxWeight;
+        private float currentWeight;
 
         public Weapon weapon;
         private Weapon firedWeapon;
@@ -40,7 +44,7 @@ namespace ClassLibrary.Ships
             if (ID != w.createdPlayerID)                               //test if the weapon is from the player and decrease the Health
             {
                 Health -= w.damage;
-                //decrease movement (implement later)
+                currentSpeed = (currentSpeed * 0.9f);
             }
         }
 
@@ -111,5 +115,30 @@ namespace ClassLibrary.Ships
             return (float)Math.Atan2(moveVector.Y, moveVector.X);
         }
 
+        private float GetWeight()
+        {
+            float temp;
+
+            temp = (maxWeight / currentWeight);
+
+            if (temp < 0.2f)
+            {
+                temp = 0.2f;
+            }
+            return temp;
+        }
+
+        public void CollectPickup(Projectile p)
+        {
+            if (p.IsVisible)
+            {
+                currentWeight += p.Weight;
+                if (currentWeight > maxWeight)
+                {
+                    currentWeight = maxWeight;
+                }
+                p.IsVisible = false;
+            }
+        }
     }
 }

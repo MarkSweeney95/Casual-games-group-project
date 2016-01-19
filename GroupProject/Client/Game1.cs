@@ -1,4 +1,6 @@
-﻿using ClassLibrary.MS_weapons;
+﻿using ClassLibrary.Base;
+using ClassLibrary.Consumables;
+using ClassLibrary.MS_weapons;
 using ClassLibrary.Ships;
 using ClassLibrary.Weapons;
 using Microsoft.Xna.Framework;
@@ -40,9 +42,16 @@ namespace Client
         AH_weapon ah_weapon;
 
 
+        Player testPlayer;
+
         Weapon testWeapon;
         Weapon newWeapon;
         List<Weapon> Weapons = new List<Weapon>();
+        List<Player> Enemies = new List<Player>();
+        List<Weapon> DestroyWeapons = new List<Weapon>();
+
+        List<Projectile> GotCollected = new List<Projectile>();
+        List<Projectile> Projectiles = new List<Projectile>();
 
         KeyboardState newState;
         KeyboardState oldState;
@@ -156,6 +165,64 @@ namespace Client
             }
 
             ms_ship.ShipUpdate(newState, oldState);
+
+
+
+            #region Collision
+
+            foreach (var item in Weapons)
+            {
+                foreach (var ene in Enemies)
+                {
+                    if (item.CollisiionDetection(ene.Ship.Rectangle)) //check if bullet hits any enemy
+                    {
+                        if (item.createdPlayerID != ene.Ship.Id)    //if the ID if the enemy is the same as the bullet
+                        {
+                            ene.Ship.GotShoot(item);                //ship got hit
+                            item.IsVisible = false;                 //disable bullet
+                            DestroyWeapons.Add(item);               //destroy bullet at the end (to clear the ram
+                            if (!ene.Ship.IsVisible)                //check if ship get destroied 
+                                ene.isActive = false;               //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
+                        }
+                    }
+                }
+                if (item.Rectangle.Intersects(testPlayer.Ship.Rectangle))    //check if playership got hit by the Weapon
+                {
+                    testPlayer.Ship.GotShoot(item);                         //ship got hit
+                    item.IsVisible = false;                                 //disable the weapon
+                    DestroyWeapons.Add(item);
+                }
+            }
+
+            foreach (var item in Projectiles)
+            {
+                if (testPlayer.Ship.CollisiionDetection(item.Rectangle))    //check if any consumables hit player ship
+                {
+                    GotCollected.Add(item);
+                    item.IsVisible = false;
+                    testPlayer.Ship.CollectPickup(item);
+                }
+
+                foreach (var ene in Enemies)
+                {
+                    if (ene.Ship.CollisiionDetection(item.Rectangle))
+                    {
+                        ene.Ship.CollectPickup(item);
+                        item.IsVisible = false;
+                        GotCollected.Add(item);
+                    }
+                }
+            }
+
+            #endregion
+
+
+
+            #region Collision
+            //need to add the collision here
+
+
+            #endregion
 
             // TODO: Add your update logic here
 
