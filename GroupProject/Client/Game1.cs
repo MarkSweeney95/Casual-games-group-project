@@ -40,15 +40,13 @@ namespace Client
         Texture2D _ah_textureS;
         Texture2D _ah_textureW;
         AH_weapon ah_weapon;
-
+        //
+        TG_Ship TG_ship;
+        Texture2D _tg_textureS;
+        Texture2D _tg_textureW;
+        TG_weapon tg_weapon;
 
         string[] menuOptions = new string[] { "Fast", "Normal", "Strong" };
-
-        enum currentDisplay { Selection, Game};
-        currentDisplay currentState = currentDisplay.Selection;
-
-        Menu menu;
-
 
 
         Player testPlayer;
@@ -112,6 +110,8 @@ namespace Client
             _ah_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\AH_ship");
             _ah_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\bomb");
 
+            _tg_textureS = Content.Load<Texture2D>(@"Assets\Textures\Ships\TH_ship");
+            _tg_textureW = Content.Load<Texture2D>(@"Assets\Textures\Weapons\plasma");
 
             testWeapon = new Weapon("0", _textureWeapon, 20f, Vector2.Zero, Vector2.Zero, 0f, 20);
             testShip = new BaseShip("0", _textureShip, 5.0f);
@@ -126,6 +126,7 @@ namespace Client
 
             AH_ship = new AH_Ship("3", _ah_textureS, 5.0f);
 
+            TG_ship = new TG_Ship("4", _tg_textureS);
             // TODO: use this.Content to load your game content here
         }
 
@@ -144,22 +145,7 @@ namespace Client
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            #region Select Character
-
-            if (currentState == currentDisplay.Selection)
-            {
-                menu.CheckMouse();
-
-              
-
-                menu.MenuAction = null; //reset the selection
-            }
-
-            #endregion
-
-
             newWeapon = testShip.ShipUpdate(newState, oldState); //update the ship and if the ship fired return a new projectile 
-
 
 
             if (newWeapon != null)
@@ -251,23 +237,15 @@ namespace Client
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            if (currentState == currentDisplay.Selection)
-                menu.Draw(spriteBatch); //draw the menu
+            //testShip.Draw(spriteBatch);
+            spriteBatch.Begin();
+            ms_ship.Draw(spriteBatch);
+            TC_ship.Draw(spriteBatch);
+            AH_ship.Draw(spriteBatch);
+            TG_ship.Draw(spriteBatch);
+            spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
 
-
-            if (currentState == currentDisplay.Game)
-            {
-
-                //testShip.Draw(spriteBatch);
-                spriteBatch.Begin();
-                ms_ship.Draw(spriteBatch);
-                TC_ship.Draw(spriteBatch);
-                AH_ship.Draw(spriteBatch);
-                spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
-
-                spriteBatch.End();
-
-            }
+            spriteBatch.End();
 
 
             if (Weapons.Count > 0)
