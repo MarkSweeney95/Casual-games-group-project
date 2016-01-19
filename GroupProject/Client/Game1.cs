@@ -42,6 +42,9 @@ namespace Client
         AH_weapon ah_weapon;
 
 
+        string[] menuOptions = new string[] { "Fast", "Normal", "Strong" };
+
+
         Player testPlayer;
 
         Weapon testWeapon;
@@ -184,7 +187,17 @@ namespace Client
                                 item.IsVisible = false;                 //disable bullet
                                 DestroyWeapons.Add(item);               //destroy bullet at the end (to clear the ram
                                 if (!ene.Ship.IsVisible)                //check if ship get destroied 
+                                {
                                     ene.isActive = false;               //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
+                                    if (item.createdPlayerID == testPlayer.UserName)
+                                        testPlayer.score += 50;
+                                }
+
+
+
+
+
+                                //deactivate the ship                               !!!!!!!!!!!!!!!! TO DO <-- !!!!!!!!!!!!!!!!!
                             }
                         }
                     }
