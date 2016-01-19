@@ -23,5 +23,7 @@ namespace ClassLibrary.Base
             isActive = true;
         }
 
+        public int score;
+
     }
 }
