@@ -44,6 +44,12 @@ namespace Client
 
         string[] menuOptions = new string[] { "Fast", "Normal", "Strong" };
 
+        enum currentDisplay { Selection, Game};
+        currentDisplay currentState = currentDisplay.Selection;
+
+        Menu menu;
+
+
 
         Player testPlayer;
 
@@ -151,7 +157,22 @@ namespace Client
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            #region Select Character
+
+            if (currentState == currentDisplay.Selection)
+            {
+                menu.CheckMouse();
+
+              
+
+                menu.MenuAction = null; //reset the selection
+            }
+
+            #endregion
+
+
             newWeapon = testShip.ShipUpdate(newState, oldState); //update the ship and if the ship fired return a new projectile 
+
 
 
             if (newWeapon != null)

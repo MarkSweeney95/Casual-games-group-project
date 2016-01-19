@@ -13,6 +13,7 @@ namespace ClassLibrary.Base
         public BaseShip Ship;
         public Weapon Weapon;
         public bool isActive;
+        public int score;
 
         public Player(string uName, BaseShip _ship, Weapon _weapon)
         {
@@ -21,6 +22,7 @@ namespace ClassLibrary.Base
             Weapon = _weapon;
             Ship.weapon = Weapon;
             isActive = true;
+            score = 0;
         }
 
     }
