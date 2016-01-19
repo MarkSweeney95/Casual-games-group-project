@@ -28,7 +28,7 @@ namespace ClassLibrary.Ships
         public AH_Ship(string id, Texture2D _tex, float speed) : base(_tex, Vector2.Zero)
         {
             ID = id;
-            Health = 100.0f;
+            Health = 150.0f;
             initSpeed = speed;
             currentSpeed = initSpeed;
             currentFireDirection = newFireDirection;

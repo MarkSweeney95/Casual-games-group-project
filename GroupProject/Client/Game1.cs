@@ -52,6 +52,8 @@ namespace Client
         string clientID;
 
         Player testPlayer;
+        Player player;
+
 
         Weapon testWeapon;
         Weapon newWeapon;
@@ -258,7 +260,7 @@ namespace Client
             TC_ship.Draw(spriteBatch);
             AH_ship.Draw(spriteBatch);
             TG_ship.Draw(spriteBatch);
-            spriteBatch.DrawString(font, Message, new Vector2(10, 10), Color.White);
+            spriteBatch.DrawString(font, player.Score.ToString(), new Vector2(10, 10), Color.White);
 
             spriteBatch.End();
 
