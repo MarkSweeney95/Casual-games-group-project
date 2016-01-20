@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat\Chat.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siganl R Chat Client", "Siganl R Chat Client\Siganl R Chat Client.csproj", "{C286B7B6-9AC7-4413-92F5-7EE9A485996A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIAuthenticationClient", "..\..\..\..\WebAPIAuthenticationClient\WebAPIAuthenticationClient.csproj", "{CDD776DB-DDAC-4109-979D-86465800E7E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIAuthenticationClient", "..\..\..\WebAPIAuthenticationClient\WebAPIAuthenticationClient.csproj", "{CDD776DB-DDAC-4109-979D-86465800E7E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

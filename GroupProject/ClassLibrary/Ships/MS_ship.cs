@@ -30,7 +30,7 @@ namespace ClassLibrary.Ships
         public MS_ship(string id, Texture2D _tex, float speed) : base(_tex, Vector2.Zero)
         {
             ID = id;
-            Health = 100.0f;
+            Health =80.0f;
             initSpeed = speed;
             currentSpeed = initSpeed;
             currentFireDirection = newFireDirection;

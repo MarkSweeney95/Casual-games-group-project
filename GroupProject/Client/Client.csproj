@@ -64,7 +64,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\WebAPIAuthenticationClient\WebAPIAuthenticationClient.csproj">
+    <ProjectReference Include="..\..\..\..\WebAPIAuthenticationClient\WebAPIAuthenticationClient.csproj">
       <Project>{cdd776db-ddac-4109-979d-86465800e7e1}</Project>
       <Name>WebAPIAuthenticationClient</Name>
     </ProjectReference>
